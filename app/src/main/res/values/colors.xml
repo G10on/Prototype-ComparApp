@@ -5,6 +5,19 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="gray">#AAAAAA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#FFF</color>
+    <color name="logo">#FF8269</color>
+    <color name="hint">#FBB143</color>
+
+
+    <color name="textInfo">#FFAAAAAA</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#FFAAAAAA</color>
+    <color name="secondary">#FFFFFAF4</color>
+    <color name="warning">#FFFF6347</color>
 </resources>
