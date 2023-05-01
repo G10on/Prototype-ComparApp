@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/basketLandingPage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:src="@drawable/basket"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
