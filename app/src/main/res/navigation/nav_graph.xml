@@ -9,4 +9,9 @@
         android:name="com.example.comparapp.LandingPage"
         android:label="LandingPage"
         tools:layout="@layout/landing_page" />
+    <fragment
+        android:id="@+id/shoppingListPage"
+        android:name="com.example.comparapp.ShoppingListFragment"
+        android:label="LandingPage"
+        tools:layout="@layout/landing_page" />
 </navigation>

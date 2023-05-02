@@ -85,7 +85,6 @@
                 android:id="@+id/btn_dec"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:background=""
                 android:text="-"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
@@ -105,7 +104,6 @@
                 android:id="@+id/btn_inc"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:background=""
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:text="+"/>
