@@ -6,6 +6,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="register_redirection">¿Ya dispones de una cuenta? Inicia Sesión</string>
-    <string name="password">  Contraseña</string>
+    <string name="password">Contraseña</string>
     <string name="text1_register">EMPIEZA A LLENAR LA CESTA</string>
+    <string name="repeat_password">Repetir contraseña</string>
 </resources>
