@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import com.example.comparapp.databinding.LandingPageBinding
+import com.example.comparapp.databinding.FragmentLandingPageBinding
 
 class LandingPage : Fragment() {
-    private lateinit var binding: LandingPageBinding
+    private lateinit var binding: FragmentLandingPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class LandingPage : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.landing_page, container, false)
+            R.layout.fragment_landing_page, container, false)
         return binding.root
     }
 
@@ -39,7 +39,7 @@ class LandingPage : Fragment() {
     }
 
     fun toRegister() {
-        //findNavController().navigate(R.id.action_homeNoSession_to_signUp)
+        findNavController().navigate(R.id.action_landingPage_to_signUp)
     }
 }
 
