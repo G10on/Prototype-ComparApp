@@ -12,6 +12,6 @@
     <fragment
         android:id="@+id/shoppingListPage"
         android:name="com.example.comparapp.ShoppingListFragment"
-        android:label="LandingPage"
-        tools:layout="@layout/landing_page" />
+        android:label="ShoppingListPage"
+        tools:layout="@layout/fragment_shopping_list" />
 </navigation>
