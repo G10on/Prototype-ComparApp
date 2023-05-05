@@ -26,4 +26,5 @@ class AppModule {
 
     @Provides
     fun provideFirestoreRepository(impl: FirestoreRepositoryImpl): FirestoreRepository = impl
+
 }

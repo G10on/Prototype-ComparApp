@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainPage">
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/register_form"
+        android:drawableLeft="@drawable/search_icon"
+        android:paddingLeft="10dp"
+        android:hint="  Buscar ..."
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_height="wrap_content"
+        android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:columnOrderPreserved="false"
+        android:orientation="horizontal"
+        android:rowCount="2"
+        android:useDefaultMargins="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText">
+
+        <GridLayout
+            android:id="@+id/gridLayout1"
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria1"
+                android:src="@drawable/cereales"
+                android:background="@drawable/register_form"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CEREALES"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/categoria2"
+                    android:src="@drawable/verduras"
+                    android:background="@drawable/register_form"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VERDURAS"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/categoria3"
+                    android:src="@drawable/lacteos"
+                    android:background="@drawable/register_form"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LÁCTEOS"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria4"
+                android:src="@drawable/frutas"
+                android:background="@drawable/register_form"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FRUTA"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria5"
+                android:src="@drawable/proteinas"
+                android:background="@drawable/register_form"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROTEÍNA"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria6"
+                android:src="@drawable/aceite"
+                android:background="@drawable/register_form"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACEITE Y GRASAS"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria7"
+                android:src="@drawable/azucar"
+                android:background="@drawable/register_form" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AZÚCAR Y DULCES"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria8"
+                android:src="@drawable/procesados"
+                android:background="@drawable/register_form"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROCESADOS"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:foregroundGravity="center"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/categoria9"
+                android:src="@drawable/bebidas"
+                android:background="@drawable/register_form"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BEBIDAS"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textSize="10sp"/>
+        </GridLayout>
+
+
+    </GridLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
