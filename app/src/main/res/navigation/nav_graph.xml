@@ -30,5 +30,14 @@
         android:id="@+id/mainPage"
         android:name="com.example.comparapp.MainPage"
         android:label="fragment_main_page"
-        tools:layout="@layout/fragment_main_page" />
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/action_mainPage_to_search2"
+            app:destination="@id/searchFrame" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFrame"
+        android:name="com.example.comparapp.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

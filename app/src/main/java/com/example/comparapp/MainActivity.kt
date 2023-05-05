@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.nav.setupWithNavController(navController)
 
+        navController.navigate(R.id.searchFrame)
+        showBottomNav()
     }
 
     private fun setupNav() {
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                //R.id.homeSession -> showBottomNav()
                 else -> hideBottomNav()
             }
         }
