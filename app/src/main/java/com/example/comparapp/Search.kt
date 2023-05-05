@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comparapp.adapter.CardViewAdapter
@@ -15,12 +16,14 @@ import com.example.comparapp.data.Product
 import com.example.comparapp.data.Resource
 import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.viewModel.ProductViewModel
+import com.example.comparapp.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Search : Fragment() {
 
     private val viewModel: ProductViewModel by viewModels()
+    private val authViewModel: UserViewModel by viewModels()
     private var productList: List<Product> = ArrayList()
     private lateinit var _binding: FragmentSearchBinding
     private lateinit var myAdapter: CardViewAdapter
@@ -45,6 +48,8 @@ class Search : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val navController = Navigation.findNavController(view)
+
         productRecyclerView = binding.recycleProducts
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
         productRecyclerView.setHasFixedSize(false)
@@ -54,7 +59,9 @@ class Search : Fragment() {
             when (resource) {
                 is Resource.Success -> {
                     productList = resource.result.toObjects(Product::class.java)!!
-                    myAdapter = CardViewAdapter(productList)
+
+                    authViewModel.getStatePremiumUser()
+                    myAdapter = CardViewAdapter(productList, authViewModel.userStatePremiumUser.value.toString())
                     binding.recycleProducts.adapter = myAdapter
                 }
 
