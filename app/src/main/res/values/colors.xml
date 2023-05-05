@@ -21,4 +21,5 @@
     <color name="secondary">#FFFFFAF4</color>
     <color name="warning">#FFFF6347</color>
     <color name="buttons">#FFFFAA6C</color>
+    <color name="buttons_txt">#FFF</color>
 </resources>
