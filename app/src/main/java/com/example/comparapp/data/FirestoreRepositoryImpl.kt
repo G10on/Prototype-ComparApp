@@ -4,10 +4,12 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.tasks.await
 import java.util.Calendar
 import javax.inject.Inject
@@ -57,4 +59,16 @@ class FirestoreRepositoryImpl @Inject constructor(private val firebaseFirestore:
 
     }
 
+    override suspend fun getProducts(): Resource<QuerySnapshot> {
+        return try {
+            val querySnapshot = dataBase?.collection("products")?.get()?.await()
+            Resource.Success(querySnapshot!!)
+        } catch (e: Exception) {
+            Resource.Failure(e.message!!)
+        }
+    }
+
+
 }
+
+
