@@ -15,4 +15,5 @@ interface FirestoreRepository {
     suspend fun isPremiumUser(userId: String): Resource<String>
     suspend fun changeStatePremiumUser(userId: String, newValue: Boolean): Resource<String>
     suspend fun getProducts(): Resource<QuerySnapshot>
+    suspend fun getProductsByCategory(category: String): Resource<QuerySnapshot>
 }

@@ -17,20 +17,23 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductViewModel @Inject constructor(private val authRepository: AuthRepository, private val firestoreRepository: FirestoreRepository) : ViewModel() {
 
-    private val _userStatePremiumUser = MutableLiveData<Resource<String>>()
-    val userStatePremiumUser: LiveData<Resource<String>> = _userStatePremiumUser
-
-    private val _loginFlow = MutableLiveData<Resource<FirebaseUser>?>()
-    val loginFlow: LiveData<Resource<FirebaseUser>?> = _loginFlow
-
     private val _productsFlow = MutableLiveData<Resource<QuerySnapshot>?>()
     val productsFlow: LiveData<Resource<QuerySnapshot>?> = _productsFlow
 
+
+    private val _productsFilterByCategoryFlow = MutableLiveData<Resource<QuerySnapshot>?>()
+    val productsFilterByCategoryFlow: LiveData<Resource<QuerySnapshot>?> = _productsFilterByCategoryFlow
 
 
     fun getProducts() = viewModelScope.launch {
         val result = firestoreRepository.getProducts()
         _productsFlow.value = result
+    }
+
+    fun getProductsCategory(category: String) = viewModelScope.launch {
+        _productsFilterByCategoryFlow.value = null
+        val result = firestoreRepository.getProductsByCategory(category)
+        _productsFilterByCategoryFlow.value = result
     }
 
 }

@@ -45,33 +45,60 @@ class Search : Fragment() {
         return view
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        productRecyclerView.adapter = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = Navigation.findNavController(view)
+        productList = arguments?.getSerializable("products") as List<Product>
+
 
         productRecyclerView = binding.recycleProducts
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
         productRecyclerView.setHasFixedSize(false)
 
-        viewModel.getProducts()
-        viewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    productList = resource.result.toObjects(Product::class.java)!!
 
-                    authViewModel.getStatePremiumUser()
-                    myAdapter = CardViewAdapter(productList, authViewModel.userStatePremiumUser.value.toString())
-                    binding.recycleProducts.adapter = myAdapter
-                }
+        if (productList != null) {
+            Log.e("HOLA", productList.size.toString())
+            authViewModel.getStatePremiumUser()
+            myAdapter = CardViewAdapter(productList, authViewModel.userStatePremiumUser.value.toString())
+            binding.recycleProducts.adapter = myAdapter
 
-                is Resource.Failure -> {
-                    Log.e("Error", "Fallo al descargar los datos de firestore")
-                }
 
-                else -> {}
-            }
         }
+
+        else {
+
+            viewModel.getProducts()
+            viewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        productList = resource.result.toObjects(Product::class.java)!!
+
+                        authViewModel.getStatePremiumUser()
+                        myAdapter = CardViewAdapter(productList, authViewModel.userStatePremiumUser.value.toString())
+                        binding.recycleProducts.adapter = myAdapter
+                    }
+
+                    is Resource.Failure -> {
+                        Log.e("Error", "Fallo al descargar los datos de firestore")
+                    }
+
+                    else -> {}
+                }
+            }
+
+        }
+
+
+
+
+
+
     }
 
 

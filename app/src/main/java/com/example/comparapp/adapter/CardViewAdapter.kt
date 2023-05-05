@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide
 class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerView.Adapter<CardViewAdapter.ViewHolder>() {
 
 
-    private var products: List<Product> = productList
+    private var products: ArrayList<Product> = productList as ArrayList<Product>
     private var isPremium: String = isPremium
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,6 +34,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerVi
         val product: View = itemView.findViewById(R.id.product)
 
     }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
 
@@ -71,13 +72,11 @@ class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerVi
                 .onClick(holder.product)
         }
 
+    }
 
 
-
-
-
-
-
+    fun clear() {
+        products.clear()
     }
 
 }
