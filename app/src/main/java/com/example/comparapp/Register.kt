@@ -15,7 +15,7 @@ import com.example.comparapp.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignUp : Fragment() {
+class Register : Fragment() {
     private val viewModel: UserViewModel by viewModels()
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: FragmentRegisterBinding
@@ -39,12 +39,12 @@ class SignUp : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         // Setup a click listener for the Submit and go to Login Page buttons.
         binding.registerButton.setOnClickListener { signUp() }
-        //binding.IniciaSesionRegister.setOnClickListener { toLogin() }
+        binding.registerRedirection.setOnClickListener { toLogin() }
     }
 
-    /*fun toLogin() {
-        findNavController().navigate(R.id.action_signUp_to_logIn)
-    }*/
+    fun toLogin() {
+        findNavController().navigate(R.id.action_register_to_loginFragment)
+    }
 
     private fun signUp() {
         val emailInput = binding.email.text.toString()
@@ -82,7 +82,7 @@ class SignUp : Fragment() {
                                 Toast.makeText(activity,
                                     "Registro efectuado con éxito",
                                     Toast.LENGTH_SHORT).show()
-                                //findNavController().navigate(R.id.homeSession)
+                                findNavController().navigate(R.id.mainPage)
 
                             }
                         }

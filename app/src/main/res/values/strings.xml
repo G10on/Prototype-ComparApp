@@ -17,8 +17,8 @@
     <string name="correo_electronico">Correo electrónico</string>
     <string name="iniciar_sesion">INICIAR SESIÓN</string>
     <string name="login_question">¿No dispones de una cesta?</string>
-    <string name="registrate"> <u>Regístrate.</u></string>
+    <string name="registrate"> <u>Regístrate</u></string>
     <string name="nombre">Nombre</string>
     <string name="register_question">¿Ya dispones de una cesta?</string>
-    <string name="register_redirection"> <u>Inicia sesión.</u></string>
+    <string name="register_redirection"> <u>Inicia sesión</u></string>
 </resources>

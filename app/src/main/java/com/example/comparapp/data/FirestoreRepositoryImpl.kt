@@ -29,7 +29,6 @@ class FirestoreRepositoryImpl @Inject constructor(private val firebaseFirestore:
 
         } catch (e: FirebaseFirestoreException){
             e.printStackTrace()
-            Log.e("Mel","Falla")
             Resource.Failure(e.message!!)
         }
     }
@@ -62,6 +61,18 @@ class FirestoreRepositoryImpl @Inject constructor(private val firebaseFirestore:
     override suspend fun getProducts(): Resource<QuerySnapshot> {
         return try {
             val querySnapshot = dataBase?.collection("products")?.get()?.await()
+            Resource.Success(querySnapshot!!)
+        } catch (e: Exception) {
+            Resource.Failure(e.message!!)
+        }
+    }
+
+
+
+    override suspend fun getProductsByCategory(category: String): Resource<QuerySnapshot> {
+        return try {
+            val querySnapshot = dataBase?.collection("products")?.
+            orderBy("pricePerUnit")?.whereEqualTo("category", category)?.get()?.await()
             Resource.Success(querySnapshot!!)
         } catch (e: Exception) {
             Resource.Failure(e.message!!)
