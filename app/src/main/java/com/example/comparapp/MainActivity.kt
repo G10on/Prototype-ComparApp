@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupNav()
         if (viewModel.currentUser != null) {
-            Log.e("Mel","Falla")
+            //viewModel.logout() //Al no estar implementado el user profile si quieres probar a salir sesión descomenta la línea
             Navigation.findNavController(this,R.id.nav_host_fragment).navigate(R.id.action_landingPage_to_mainPage)
             showBottomNav()
         }
