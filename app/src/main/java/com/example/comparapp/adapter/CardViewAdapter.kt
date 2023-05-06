@@ -66,7 +66,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerVi
 
         holder.product.setOnClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("my_object_key", products[position])
+            bundle.putSerializable("product", products[position])
 
             Navigation.createNavigateOnClickListener(R.id.action_searchFrame_to_productExtraInformationFragment, bundle)
                 .onClick(holder.product)
