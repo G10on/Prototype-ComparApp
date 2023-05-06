@@ -59,31 +59,12 @@ android:background="@color/background">
                 app:cornerRadius="25dp">
 
                 <Button
-                    android:id="@+id/btn_account_settings"
+                    android:id="@+id/btn_change_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background=""
                     android:padding="0dp"
                     android:text="Cambiar contraseña"
-                    android:textColor="@color/buttons_txt"
-                    android:textSize="24dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/logout_btn_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/button"
-                app:cornerRadius="25dp">
-
-                <Button
-                    android:id="@+id/btn_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background=""
-                    android:padding="0dp"
-                    android:text="Cerrar sesión"
                     android:textColor="@color/buttons_txt"
                     android:textSize="24dp" />
             </LinearLayout>
@@ -103,6 +84,25 @@ android:background="@color/background">
                     android:background=""
                     android:padding="0dp"
                     android:text="Suscribirse a Premium"
+                    android:textColor="@color/buttons_txt"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout_btn_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button"
+                app:cornerRadius="25dp">
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background=""
+                    android:padding="0dp"
+                    android:text="Cerrar sesión"
                     android:textColor="@color/buttons_txt"
                     android:textSize="24dp" />
             </LinearLayout>
