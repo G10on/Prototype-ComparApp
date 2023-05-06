@@ -49,4 +49,9 @@
         android:name="com.example.comparapp.ProductExtraInformationFragment"
         android:label="fragment_product_extra_information"
         tools:layout="@layout/fragment_product_extra_information" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.comparapp.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
 </navigation>

@@ -8,6 +8,6 @@
         android:id="@+id/home"
         android:icon="@drawable/icon_shopping_cart_bottom_nav" />
     <item android:title=" "
-        android:id="@+id/userProfile"
+        android:id="@+id/userProfileFragment"
         android:icon="@drawable/icon_user_bottom_nav"/>
 </menu>

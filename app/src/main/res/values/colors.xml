@@ -22,4 +22,6 @@
     <color name="warning">#FFFF6347</color>
     <color name="buttons">#FFFFAA6C</color>
     <color name="buttons_txt">#FFF</color>
+    <color name="transparent">#00000000</color>
+
 </resources>
