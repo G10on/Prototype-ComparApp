@@ -53,16 +53,14 @@ class UserProfileFragment : Fragment() {
         binding.btnLogout.setOnClickListener { logout() }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
     private fun loadData() {
         var txtName = view?.findViewById<TextView>(R.id.txt_name)
         var txtEmail = view?.findViewById<TextView>(R.id.txt_email)
 
         txtName!!.text = userViewModel.getNameCurrentUser()
         txtEmail!!.text = userViewModel.getEmailCurrentUser()
+
+        updateSubscribeState()
     }
 
     private fun changePassword() {
