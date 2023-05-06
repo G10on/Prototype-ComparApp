@@ -51,4 +51,26 @@ class AuthRepositoryImpl @Inject constructor(private val firebaseAuth: FirebaseA
         }
 
     }
+
+    override suspend fun sendChangePasswordEmail(email: String): Resource<String>{
+        return try{
+            firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Resource.Success(email)
+                    } else {
+
+                        Log.e(TAG, "Error sending password reset email.", task.exception)
+                    }
+                }
+            currentUser?.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(newName).build())
+                ?.await()
+            Resource.Success(newName)
+
+        } catch (e: FirebaseAuthException){
+            e.printStackTrace()
+            Resource.Failure(e.errorCode)
+        }
+
+    }
 }

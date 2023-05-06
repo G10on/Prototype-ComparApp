@@ -12,14 +12,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.comparapp.data.Product
 import com.example.comparapp.data.Resource
+import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.databinding.FragmentUserProfileBinding
 import com.example.comparapp.viewModel.UserViewModel
 
 class UserProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by viewModels()
-    private var isPremium: Boolean = false
     private lateinit var _binding: FragmentUserProfileBinding
+
+    private var isPremium: Boolean = false
 
     private val binding get() = _binding!!
 
@@ -28,11 +30,10 @@ class UserProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_user_profile, container, false)
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -58,31 +59,13 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun changePassword() {
-        
+        userViewModel.changePassword()
     }
 
     private fun changeStatePremium() {
-
-        userViewModel.getStatePremiumUser()
-
-        userViewModel.userStatePremiumUser.observe(viewLifecycleOwner) {
-            it?.let {
-                when (it) {
-
-                    is Resource.Success -> {
-                        var newState = it.result == "false"
-                        userViewModel.setStatePremiumUser(newState)
-                        updateSubscribeState()
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al intentar cambiar de contraseña")
-                    }
-
-                    else -> {}
-                }
-            }
-        }
+        var newState = !isPremium
+        userViewModel.setStatePremiumUser(newState)
+        updateSubscribeState()
     }
 
     private fun updateSubscribeState() {
@@ -93,13 +76,13 @@ class UserProfileFragment : Fragment() {
                 when (it) {
 
                     is Resource.Success -> {
-                        var newTXT: String
-                        newTXT = if (it.result.toBoolean()) {
-                            "Desubscribe de Premium"
+                        isPremium = it.result.toBoolean()
+                        var newTXT: String = if (isPremium) {
+                            "Desuscribirse de Premium"
                         } else {
                             "Suscribirse a Premium"
                         }
-                        btnSubscribe.setText(newTXT)
+                        btnSubscribe.text = newTXT
                     }
 
                     is Resource.Failure -> {

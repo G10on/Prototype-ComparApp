@@ -90,7 +90,11 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
         _userStatePremiumUser.value = result
     }
 
-
+    fun changePassword() {
+        if (currentUser != null) {
+            authRepository.sendChangePasswordEmail(currentUser!!.email!!)
+        }
+    }
 
 
 }
