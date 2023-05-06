@@ -81,7 +81,7 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.17'
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-    
+
     //Recyclerview
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
