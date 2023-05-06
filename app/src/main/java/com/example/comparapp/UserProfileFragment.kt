@@ -1,26 +1,24 @@
 package com.example.comparapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.example.comparapp.databinding.FragmentSearchBinding
+import com.example.comparapp.data.Product
+import com.example.comparapp.data.Resource
 import com.example.comparapp.databinding.FragmentUserProfileBinding
 import com.example.comparapp.viewModel.UserViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class UserProfileFragment : Fragment() {
 
-    private val viewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+    private var isPremium: Boolean = false
     private lateinit var _binding: FragmentUserProfileBinding
 
     private val binding get() = _binding!!
@@ -45,52 +43,78 @@ class UserProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 //        binding = FragmentUserProfileBinding.inflate(inflater)
 
+        loadData()
         binding.btnChangePassword.setOnClickListener { changePassword() }
-        binding.btnSubscribePremium.setOnClickListener { subscribePremium() }
-        binding.btnLogout.setOnClickListener { logOut() }
+        binding.btnSubscribePremium.setOnClickListener { changeStatePremium() }
+        binding.btnLogout.setOnClickListener { logout() }
+    }
+
+    private fun loadData() {
+        var txtName = view?.findViewById<TextView>(R.id.txt_name)
+        var txtEmail = view?.findViewById<TextView>(R.id.txt_email)
+
+        txtName!!.text = userViewModel.getNameCurrentUser()
+        txtEmail!!.text = userViewModel.getEmailCurrentUser()
     }
 
     private fun changePassword() {
-        TODO("Not yet implemented")
+        
     }
 
-    private fun subscribePremium() {
-        viewModel.logout()
-    }
+    private fun changeStatePremium() {
 
-    private fun logOut() {
-        viewModel.logout()
-        findNavController().navigate(R.id.landingPage)
-    }
+        userViewModel.getStatePremiumUser()
 
+        userViewModel.userStatePremiumUser.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it) {
 
-    private fun setUserDocID() {
-        viewModel.user.observe(viewLifecycleOwner) {
-            userDocID = it.userDocID!!
+                    is Resource.Success -> {
+                        var newState = it.result == "false"
+                        userViewModel.setStatePremiumUser(newState)
+                        updateSubscribeState()
+                    }
+
+                    is Resource.Failure -> {
+                        Log.e("Error", "Fallo al intentar cambiar de contraseña")
+                    }
+
+                    else -> {}
+                }
+            }
         }
     }
 
+    private fun updateSubscribeState() {
+        val btnSubscribe = requireView().findViewById<Button>(R.id.btn_subscribe_premium)
+        userViewModel.getStatePremiumUser()
+        userViewModel.userStatePremiumUser.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it) {
 
-    private fun getUserData() {
+                    is Resource.Success -> {
+                        var newTXT: String
+                        newTXT = if (it.result.toBoolean()) {
+                            "Desubscribe de Premium"
+                        } else {
+                            "Suscribirse a Premium"
+                        }
+                        btnSubscribe.setText(newTXT)
+                    }
 
-        var imgProfile = view?.findViewById<ImageView>(R.id.img_profile)
-        var txtName = view?.findViewById<TextView>(R.id.txt_name)
-        var txtUsername = view?.findViewById<TextView>(R.id.txt_username)
-        var txtnumFollowers = view?.findViewById<TextView>(R.id.txt_num_followers)
-        var txtnumPoints = view?.findViewById<TextView>(R.id.txt_num_points)
-        var txtnumFollowings = view?.findViewById<TextView>(R.id.txt_num_followings)
+                    is Resource.Failure -> {
+                        Log.e("Error", "Fallo al verificar su estado de Premium")
+                    }
 
-        CoroutineScope(Dispatchers.Main).launch{
-            var user = db.getUserByDocID(userDocID!!)
-            if ((user != null) && (imgProfile != null)) {
-                txtUsername!!.text = "@" + user!!.username
-                Glide.with(requireView()).load(user.profile_image).into(imgProfile)
-                txtName!!.text = user.name
-                txtnumFollowings!!.text = user.n_followings.toString()
-                txtnumPoints!!.text = user.n_points.toString()
-                txtnumFollowers!!.text = user.n_followers.toString()
+                    else -> {}
+                }
             }
         }
 
+    }
+
+    private fun logout() {
+        userViewModel.logout()
+        findNavController().navigate(R.id.landingPage)
     }
 }
