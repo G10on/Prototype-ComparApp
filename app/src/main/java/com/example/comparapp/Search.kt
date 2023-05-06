@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comparapp.adapter.CardViewAdapter
@@ -41,8 +40,7 @@ class Search : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
 
@@ -63,14 +61,28 @@ class Search : Fragment() {
 
 
         if (productList != null) {
-            Log.e("HOLA", productList.size.toString())
+
             authViewModel.getStatePremiumUser()
-            myAdapter = CardViewAdapter(productList, authViewModel.userStatePremiumUser.value.toString())
-            binding.recycleProducts.adapter = myAdapter
+            authViewModel.userStatePremiumUser.observe(viewLifecycleOwner) {
+
+                when (it) {
+                    is Resource.Success -> {
+
+                        myAdapter = CardViewAdapter(productList, it.result.toBoolean())
+                        binding.recycleProducts.adapter = myAdapter
+
+                    }
+
+                    else -> {
+
+                    }
+                }
+            }
+
 
 
         }
-
+        /* Código para diferenciar entre una búsqueda empezada desde categoría o desde la barra
         else {
 
             viewModel.getProducts()
@@ -92,7 +104,7 @@ class Search : Fragment() {
                 }
             }
 
-        }
+        }*/
 
 
 
