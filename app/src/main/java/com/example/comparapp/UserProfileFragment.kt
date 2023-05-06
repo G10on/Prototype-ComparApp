@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.comparapp.data.Product
@@ -15,7 +16,9 @@ import com.example.comparapp.data.Resource
 import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.databinding.FragmentUserProfileBinding
 import com.example.comparapp.viewModel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by viewModels()
@@ -50,6 +53,10 @@ class UserProfileFragment : Fragment() {
         binding.btnLogout.setOnClickListener { logout() }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
     private fun loadData() {
         var txtName = view?.findViewById<TextView>(R.id.txt_name)
         var txtEmail = view?.findViewById<TextView>(R.id.txt_email)
@@ -60,11 +67,17 @@ class UserProfileFragment : Fragment() {
 
     private fun changePassword() {
         userViewModel.changePassword()
+        Toast.makeText(activity, "Email de cambio de contraseña enviado", Toast.LENGTH_SHORT).show()
     }
 
     private fun changeStatePremium() {
         var newState = !isPremium
         userViewModel.setStatePremiumUser(newState)
+        if (newState) {
+            Toast.makeText(activity, "Suscrito exitosamente", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "Desuscrito exitosamente", Toast.LENGTH_SHORT).show()
+        }
         updateSubscribeState()
     }
 
@@ -98,6 +111,7 @@ class UserProfileFragment : Fragment() {
 
     private fun logout() {
         userViewModel.logout()
+        Toast.makeText(activity,"Cierre de sesión efectuado con éxito",Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.landingPage)
     }
 }

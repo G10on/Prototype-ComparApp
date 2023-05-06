@@ -87,7 +87,7 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
         _userStatePremiumUser.value = result
     }
 
-    fun changePassword() {
+    fun changePassword() = viewModelScope.launch {
         if (currentUser != null) {
             authRepository.sendChangePasswordEmail(currentUser!!.email!!)
         }
