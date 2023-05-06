@@ -70,9 +70,6 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
         }
     }
 
-    fun getPhotoUrl(): Uri? {
-        return currentUser?.photoUrl
-    }
     fun loadDataUser() = viewModelScope.launch {
         getStatePremiumUser()
     }
