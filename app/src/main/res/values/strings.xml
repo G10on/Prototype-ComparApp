@@ -30,5 +30,6 @@
     <string name="verduras">VERDURAS</string>
     <string name="cereales">CEREALES</string>
     <string name="bebidas">BEBIDAS</string>
-    <string name="producto_no_encontrado">No se encuentran productos que coincidan con su búsqueda</string>
+    <string name="producto_no_encontrado">No existen productos</string>
+    <string name="cesta">Cesta</string>
 </resources>

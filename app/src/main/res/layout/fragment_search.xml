@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <TextView
-        android:id="@+id/texto_no_encuentra_producto"
+        android:id="@+id/texto_no_producto"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:fontFamily="@font/robotoregular"
