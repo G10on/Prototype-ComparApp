@@ -80,7 +80,9 @@ class Search : Fragment() {
 
                         myAdapter = CardViewAdapter(productList, it.result.toBoolean())
                         binding.recycleProducts.adapter = myAdapter
-
+                        if (productList.isEmpty()){
+                            binding.textoNoProducto.visibility = View.VISIBLE
+                        }
                     }
 
                     else -> {
@@ -132,10 +134,10 @@ class Search : Fragment() {
         myAdapter = CardViewAdapter(filteredlist, true)
         productRecyclerView.adapter = myAdapter
         if (filteredlist.isEmpty()) {
-            binding.textoNoEncuentraProducto.visibility = View.VISIBLE
+            binding.textoNoProducto.visibility = View.VISIBLE
         }
         else{
-            binding.textoNoEncuentraProducto.visibility = View.INVISIBLE
+            binding.textoNoProducto.visibility = View.INVISIBLE
         }
     }
 
