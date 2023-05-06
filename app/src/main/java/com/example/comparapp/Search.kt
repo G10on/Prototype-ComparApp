@@ -2,11 +2,11 @@ package com.example.comparapp
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +17,11 @@ import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.viewModel.ProductViewModel
 import com.example.comparapp.viewModel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class Search : Fragment() {
 
-    private val viewModel: ProductViewModel by viewModels()
     private val authViewModel: UserViewModel by viewModels()
     private var productList: List<Product> = ArrayList()
     private lateinit var _binding: FragmentSearchBinding
@@ -40,6 +40,16 @@ class Search : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filter(newText)
+                return false
+            }
+        })
         return binding.root
     }
 
@@ -70,7 +80,9 @@ class Search : Fragment() {
 
                         myAdapter = CardViewAdapter(productList, it.result.toBoolean())
                         binding.recycleProducts.adapter = myAdapter
-
+                        if (productList.isEmpty()){
+                            binding.textoNoProducto.visibility = View.VISIBLE
+                        }
                     }
 
                     else -> {
@@ -111,6 +123,22 @@ class Search : Fragment() {
 
 
 
+    }
+    private fun filter(text: String) {
+        val filteredlist = java.util.ArrayList<Product>()
+        for (item in productList) {
+            if (item.name?.lowercase()?.contains(text.lowercase(Locale.getDefault())) == true) {
+                filteredlist.add(item)
+            }
+        }
+        myAdapter = CardViewAdapter(filteredlist, true)
+        productRecyclerView.adapter = myAdapter
+        if (filteredlist.isEmpty()) {
+            binding.textoNoProducto.visibility = View.VISIBLE
+        }
+        else{
+            binding.textoNoProducto.visibility = View.INVISIBLE
+        }
     }
 
 

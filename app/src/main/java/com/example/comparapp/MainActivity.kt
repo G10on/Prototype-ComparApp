@@ -1,7 +1,6 @@
 package com.example.comparapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.mainPage -> showBottomNav()
+                R.id.searchFrame -> showBottomNav()
                 R.id.shoppingListPage -> showBottomNav()
                 R.id.userProfileFragment -> showBottomNav()
                 else -> hideBottomNav()
