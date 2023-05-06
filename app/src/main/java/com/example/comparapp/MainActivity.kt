@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.nav.setupWithNavController(navController)
 
-        navController.navigate(R.id.searchFrame)
+        navController.navigate(R.id.mainPage)
         showBottomNav()
     }
 

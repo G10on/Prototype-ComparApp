@@ -39,5 +39,14 @@
         android:id="@+id/searchFrame"
         android:name="com.example.comparapp.Search"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFrame_to_productExtraInformationFragment"
+            app:destination="@id/productExtraInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productExtraInformationFragment"
+        android:name="com.example.comparapp.ProductExtraInformationFragment"
+        android:label="fragment_product_extra_information"
+        tools:layout="@layout/fragment_product_extra_information" />
 </navigation>
