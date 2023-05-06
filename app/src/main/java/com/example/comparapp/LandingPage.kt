@@ -35,11 +35,11 @@ class LandingPage : Fragment() {
     }
 
     fun toLogin() {
-        //findNavController().navigate(R.id.action_homeNoSession_to_logIn)
+        findNavController().navigate(R.id.action_landingPage_to_loginFragment)
     }
 
     fun toRegister() {
-        findNavController().navigate(R.id.action_landingPage_to_signUp)
+        findNavController().navigate(R.id.action_landingPage_to_register)
     }
 }
 

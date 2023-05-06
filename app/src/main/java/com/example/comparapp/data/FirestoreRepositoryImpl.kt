@@ -29,7 +29,6 @@ class FirestoreRepositoryImpl @Inject constructor(private val firebaseFirestore:
 
         } catch (e: FirebaseFirestoreException){
             e.printStackTrace()
-            Log.e("Mel","Falla")
             Resource.Failure(e.message!!)
         }
     }

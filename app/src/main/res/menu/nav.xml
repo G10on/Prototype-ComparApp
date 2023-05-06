@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title=" "
-        android:id="@+id/userStoreroom"
+        android:id="@+id/mainPage"
         android:icon="@drawable/icon_list_bottom_nav" />
     <item android:title=" "
-        android:id="@+id/home"
+        android:id="@+id/shoppingListPage"
         android:icon="@drawable/icon_shopping_cart_bottom_nav" />
     <item android:title=" "
         android:id="@+id/userProfileFragment"
