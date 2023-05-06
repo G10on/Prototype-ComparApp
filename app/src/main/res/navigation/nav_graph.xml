@@ -10,22 +10,20 @@
         android:label="LandingPage"
         tools:layout="@layout/fragment_landing_page" >
         <action
-            android:id="@+id/action_landingPage_to_signUp"
-            app:destination="@id/signUp" />
+            android:id="@+id/action_landingPage_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_landingPage_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_landingPage_to_mainPage"
+            app:destination="@id/mainPage" />
     </fragment>
     <fragment
         android:id="@+id/shoppingListPage"
         android:name="com.example.comparapp.ShoppingListFragment"
         android:label="ShoppingListPage"
         tools:layout="@layout/fragment_shopping_list" />
-    <fragment
-        android:id="@+id/signUp"
-        android:name="com.example.comparapp.SignUp"
-        android:label="SignUp" >
-        <action
-            android:id="@+id/action_signUp_to_mainPage"
-            app:destination="@id/mainPage" />
-    </fragment>
     <fragment
         android:id="@+id/mainPage"
         android:name="com.example.comparapp.MainPage"
@@ -49,4 +47,27 @@
         android:name="com.example.comparapp.ProductExtraInformationFragment"
         android:label="fragment_product_extra_information"
         tools:layout="@layout/fragment_product_extra_information" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.comparapp.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainPage"
+            app:destination="@id/mainPage" />
+        <action
+            android:id="@+id/action_loginFragment_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.comparapp.Register"
+        android:label="Register" >
+        <action
+            android:id="@+id/action_register_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_register_to_mainPage"
+            app:destination="@id/mainPage" />
+    </fragment>
 </navigation>
