@@ -1,6 +1,5 @@
 package com.example.comparapp.data
 
-import android.net.Uri
 import com.google.firebase.auth.FirebaseUser
 
 interface AuthRepository {
@@ -9,5 +8,6 @@ interface AuthRepository {
     suspend fun signup(name: String, email: String, password: String): Resource<FirebaseUser>
     fun logout()
     suspend fun setNameUser(newName: String): Resource<String>
+    suspend fun sendChangePasswordEmail(email: String): Resource<String>
 
 }
