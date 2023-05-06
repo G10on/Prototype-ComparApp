@@ -66,7 +66,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
                 Log.e("ES PREMIUM ??", isPremium.toString())
 
                 val bundle = Bundle()
-                bundle.putSerializable("my_object_key", products[position])
+                bundle.putSerializable("product", products[position])
 
                 Navigation.createNavigateOnClickListener(
                     R.id.action_searchFrame_to_productExtraInformationFragment,
