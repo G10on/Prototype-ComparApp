@@ -62,6 +62,10 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
         return currentUser?.displayName
     }
 
+    fun getEmailCurrentUser(): String? {
+        return currentUser?.email
+    }
+
     fun getStatePremiumUser() = viewModelScope.launch {
         if(currentUser != null){
             val result = firestoreRepository.isPremiumUser(currentUser!!.uid)
@@ -83,7 +87,11 @@ class UserViewModel @Inject constructor(private val authRepository: AuthReposito
         _userStatePremiumUser.value = result
     }
 
-
+    fun changePassword() = viewModelScope.launch {
+        if (currentUser != null) {
+            authRepository.sendChangePasswordEmail(currentUser!!.email!!)
+        }
+    }
 
 
 }

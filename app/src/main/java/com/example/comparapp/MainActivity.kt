@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.mainPage -> showBottomNav()
                 R.id.shoppingListPage -> showBottomNav()
+                R.id.userProfileFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
         }

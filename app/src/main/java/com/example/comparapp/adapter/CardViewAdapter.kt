@@ -7,23 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comparapp.R
 import com.example.comparapp.data.Product
-import com.example.comparapp.viewModel.UserViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import kotlin.collections.ArrayList
 import com.bumptech.glide.Glide
 
 
 @Suppress("UNCHECKED_CAST")
-class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerView.Adapter<CardViewAdapter.ViewHolder>() {
+class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerView.Adapter<CardViewAdapter.ViewHolder>() {
 
 
     private var products: ArrayList<Product> = productList as ArrayList<Product>
-    private var isPremium: String = isPremium
+    private var isPremium: Boolean = isPremium
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -63,13 +61,23 @@ class CardViewAdapter(productList: List<Product>, isPremium: String): RecyclerVi
             .into(holder.productSupermarketLogo)
 
 
-
         holder.product.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putSerializable("product", products[position])
+            if (isPremium) {
+                Log.e("ES PREMIUM ??", isPremium.toString())
 
-            Navigation.createNavigateOnClickListener(R.id.action_searchFrame_to_productExtraInformationFragment, bundle)
-                .onClick(holder.product)
+                val bundle = Bundle()
+                bundle.putSerializable("my_object_key", products[position])
+
+                Navigation.createNavigateOnClickListener(
+                    R.id.action_searchFrame_to_productExtraInformationFragment,
+                    bundle
+                )
+                    .onClick(holder.product)
+
+            }
+            else {
+                Toast.makeText(holder.itemView.context, "Funcionalidad solo para usuarios PREMIUM :)", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
