@@ -4,7 +4,7 @@
     <string name="inicia_sesion">Iniciar sesión</string>
     <string name="registrarse">Registrarse</string>
     <string name="ingredientes">Ingredientes</string>
-    <string name="valores_nutricionales">Valores nutricionales</string>
+    <string name="valores_nutricionales">Valores nutricionales (por 100g)</string>
     <string name="valor_energetico">Valor energético (kcal):</string>
     <string name="grasas">Grasas:</string>
     <string name="hidratos_de_carbono">Hidratos de carbono:</string>
@@ -21,4 +21,16 @@
     <string name="nombre">Nombre</string>
     <string name="register_question">¿Ya dispones de una cesta?</string>
     <string name="register_redirection"> <u>Inicia sesión</u></string>
+    <string name="lacteos">LÁCTEOS</string>
+    <string name="fruta">FRUTA</string>
+    <string name="proteína">PROTEÍNA</string>
+    <string name="aceite_y_grasas">GRASAS</string>
+    <string name="azucar_y_dulces">AZÚCAR</string>
+    <string name="procesados">PROCESADOS</string>
+    <string name="verduras">VERDURAS</string>
+    <string name="cereales">CEREALES</string>
+    <string name="bebidas">BEBIDAS</string>
+    <string name="producto_no_encontrado">No existen productos</string>
+    <string name="cesta">Cesta</string>
+    <string name="todos">TODOS</string>
 </resources>

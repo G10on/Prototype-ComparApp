@@ -45,102 +45,49 @@ class MainPage : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.categoria1.setOnClickListener { addNavigation(binding.categoria1, "Cereales") }
+        binding.categoria2.setOnClickListener { addNavigation(binding.categoria2, "Verduras") }
+        binding.categoria3.setOnClickListener { addNavigation(binding.categoria3, "Lácteos") }
+        binding.categoria4.setOnClickListener { addNavigation(binding.categoria4, "Fruta") }
+        binding.categoria5.setOnClickListener { addNavigation(binding.categoria5, "Proteína") }
+        binding.categoria6.setOnClickListener { addNavigation(binding.categoria6, "Aceite y grasas") }
+        binding.categoria7.setOnClickListener { addNavigation(binding.categoria7, "Azúcar y dulces") }
+        binding.categoria8.setOnClickListener { addNavigation(binding.categoria8, "Procesados") }
+        binding.categoria9.setOnClickListener { addNavigation(binding.categoria9, "Bebidas") }
+    }
 
-        binding.categoria1.setOnClickListener {
+    private fun addNavigation(view: View, category: String) {
+        productViewModel.getProductsCategory(category)
+        productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
 
-            productViewModel.getProductsCategory("Cereales")
-            productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    products = resource.result.toObjects(Product::class.java)!!
 
-                when (resource) {
-                    is Resource.Success -> {
-                        products = resource.result.toObjects(Product::class.java)!!
+                    val bundle = Bundle()
+                    bundle.putSerializable("products", ArrayList(products))
 
-                        Log.e("cereales", "cereales")
-                        val bundle = Bundle()
-                        bundle.putSerializable("products", ArrayList(products))
-
-                        Navigation.createNavigateOnClickListener(
-                            R.id.action_mainPage_to_search2,
-                            bundle
-                        ).onClick(binding.categoria1)
-
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al descargar los datos de firestore")
-                    }
-
-                    else -> {}
+                    Navigation.createNavigateOnClickListener(
+                        R.id.action_mainPage_to_search2,
+                        bundle
+                    ).onClick(view)
                 }
-            }
 
+                is Resource.Failure -> {
+                    Log.e("Error", "Fallo al descargar los datos de firestore")
+                }
+
+                else -> {}
+            }
         }
 
-        binding.categoria2.setOnClickListener {
+        binding.categoria10.setOnClickListener {
 
-            productViewModel.getProductsCategory("Verduras")
-            productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
-
-                when (resource) {
-                    is Resource.Success -> {
-                        products = resource.result.toObjects(Product::class.java)!!
-
-                        val bundle = Bundle()
-                        bundle.putSerializable("products", ArrayList(products))
-
-                        Navigation.createNavigateOnClickListener(
-                            R.id.action_mainPage_to_search2,
-                            bundle
-                        ).onClick(binding.categoria2)
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al descargar los datos de firestore")
-                    }
-
-                    else -> {}
-                }
-            }
-
-        }
-
-        binding.categoria3.setOnClickListener {
-
-            productViewModel.getProductsCategory("Lácteos")
-            productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
-
-                when (resource) {
-                    is Resource.Success -> {
-                        products = resource.result.toObjects(Product::class.java)!!
-
-                        Log.e("lacteos", products[0].name.toString())
-                        val bundle = Bundle()
-                        bundle.putSerializable("products", ArrayList(products))
-
-                        Navigation.createNavigateOnClickListener(
-                            R.id.action_mainPage_to_search2,
-                            bundle
-                        ).onClick(binding.categoria3)
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al descargar los datos de firestore")
-                    }
-
-                    else -> {}
-                }
-            }
-
-        }
-
-        binding.categoria4.setOnClickListener {
-
-            productViewModel.getProductsCategory("Fruta")
-            productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
+            productViewModel.getProducts()
+            productViewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
 
                 when (resource) {
                     is Resource.Success -> {
@@ -152,35 +99,7 @@ class MainPage : Fragment() {
                         Navigation.createNavigateOnClickListener(
                             R.id.action_mainPage_to_search2,
                             bundle
-                        ).onClick(binding.categoria4)
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al descargar los datos de firestore")
-                    }
-
-                    else -> {}
-                }
-            }
-
-        }
-
-        binding.categoria5.setOnClickListener {
-
-            productViewModel.getProductsCategory("Proteína")
-            productViewModel.productsFilterByCategoryFlow.observe(viewLifecycleOwner) { resource ->
-
-                when (resource) {
-                    is Resource.Success -> {
-                        products = resource.result.toObjects(Product::class.java)!!
-
-                        val bundle = Bundle()
-                        bundle.putSerializable("products", ArrayList(products))
-
-                        Navigation.createNavigateOnClickListener(
-                            R.id.action_mainPage_to_search2,
-                            bundle
-                        ).onClick(binding.categoria5)
+                        ).onClick(binding.categoria10)
                     }
 
                     is Resource.Failure -> {
@@ -194,7 +113,5 @@ class MainPage : Fragment() {
         }
 
     }
-
-
 
 }

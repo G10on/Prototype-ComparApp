@@ -60,7 +60,8 @@ class FirestoreRepositoryImpl @Inject constructor(private val firebaseFirestore:
 
     override suspend fun getProducts(): Resource<QuerySnapshot> {
         return try {
-            val querySnapshot = dataBase?.collection("products")?.get()?.await()
+            val querySnapshot = dataBase?.collection("products")?.
+            orderBy("pricePerUnit")?.get()?.await()
             Resource.Success(querySnapshot!!)
         } catch (e: Exception) {
             Resource.Failure(e.message!!)
