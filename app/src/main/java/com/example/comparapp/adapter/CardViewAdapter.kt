@@ -61,15 +61,12 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
             .into(holder.productSupermarketLogo)
 
 
-
-
-
         holder.product.setOnClickListener {
             if (isPremium) {
                 Log.e("ES PREMIUM ??", isPremium.toString())
 
                 val bundle = Bundle()
-                bundle.putSerializable("my_object_key", products[position])
+                bundle.putSerializable("product", products[position])
 
                 Navigation.createNavigateOnClickListener(
                     R.id.action_searchFrame_to_productExtraInformationFragment,
