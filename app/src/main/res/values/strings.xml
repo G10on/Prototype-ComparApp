@@ -24,12 +24,13 @@
     <string name="lacteos">LÁCTEOS</string>
     <string name="fruta">FRUTA</string>
     <string name="proteína">PROTEÍNA</string>
-    <string name="aceite_y_grasas">ACEITE Y GRASAS</string>
-    <string name="azucar_y_dulces">AZÚCAR Y DULCES</string>
+    <string name="aceite_y_grasas">GRASAS</string>
+    <string name="azucar_y_dulces">AZÚCAR</string>
     <string name="procesados">PROCESADOS</string>
     <string name="verduras">VERDURAS</string>
     <string name="cereales">CEREALES</string>
     <string name="bebidas">BEBIDAS</string>
     <string name="producto_no_encontrado">No existen productos</string>
     <string name="cesta">Cesta</string>
+    <string name="todos">TODOS</string>
 </resources>

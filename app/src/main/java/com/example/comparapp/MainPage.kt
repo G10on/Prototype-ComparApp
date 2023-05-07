@@ -83,6 +83,35 @@ class MainPage : Fragment() {
                 else -> {}
             }
         }
+
+        binding.categoria10.setOnClickListener {
+
+            productViewModel.getProducts()
+            productViewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
+
+                when (resource) {
+                    is Resource.Success -> {
+                        products = resource.result.toObjects(Product::class.java)!!
+
+                        val bundle = Bundle()
+                        bundle.putSerializable("products", ArrayList(products))
+
+                        Navigation.createNavigateOnClickListener(
+                            R.id.action_mainPage_to_search2,
+                            bundle
+                        ).onClick(binding.categoria5)
+                    }
+
+                    is Resource.Failure -> {
+                        Log.e("Error", "Fallo al descargar los datos de firestore")
+                    }
+
+                    else -> {}
+                }
+            }
+
+        }
+
     }
 
 }
