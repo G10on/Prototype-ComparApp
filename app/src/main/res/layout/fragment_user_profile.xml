@@ -38,7 +38,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:shadowRadius="0"
                     android:text="John Doe"
                     android:textColor="@color/logo"
-                    android:textSize="50dp"
+                    android:textSize="35dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +49,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:gravity="center"
                     android:text="johndoe@mail.com"
                     android:textColor="@color/textInfo"
-                    android:textSize="23dp" />
+                    android:textSize="19dp" />
 
                 <LinearLayout
                     android:id="@+id/change_pw_btn_container"
@@ -65,13 +65,14 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:padding="0dp"
                         android:text="Cambiar contraseña"
                         android:textColor="@color/buttons_txt"
-                        android:textSize="24dp" />
+                        android:textSize="19dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/subscribe_premium_btn_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:shadowColor="@color/logo"
                     android:layout_marginTop="15dp">
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -82,7 +83,7 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:padding="0dp"
                         android:text=""
                         android:textColor="@color/buttons_txt"
-                        android:textSize="24dp" />
+                        android:textSize="19dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,7 +100,7 @@ xmlns:tools="http://schemas.android.com/tools">
                         android:padding="0dp"
                         android:text="Cerrar sesión"
                         android:textColor="@color/buttons_txt"
-                        android:textSize="24dp" />
+                        android:textSize="19dp" />
                 </LinearLayout>
 
             </LinearLayout>
