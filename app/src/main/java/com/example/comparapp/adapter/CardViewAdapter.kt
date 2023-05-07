@@ -69,7 +69,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
                 var addBtn = containerLayout.findViewById<Button>(R.id.add_to_SL_btn)
                 containerLayout.setBackgroundColor(ContextCompat.getColor(containerLayout.context, R.color.disccount))
                 addBtn.setBackgroundResource(R.drawable.product_plus_button_disccount)
-                holder.productPrice.text = price.toString() + "€/kg"
+                holder.productPrice.text = price.toString() + "€/u"
                 price -= discount!!
                 holder.productPrice.visibility = View.VISIBLE
                 holder.productPrice.paintFlags = holder.productFinalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -78,7 +78,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
             }
         }
 
-        holder.productFinalPrice.text = price.toString() + "€/kg"
+        holder.productFinalPrice.text = price.toString() + "€/u"
 
         Glide.with(holder.itemView.context).asBitmap().load(products[position].urlPhoto)
             .into(holder.productImage)
