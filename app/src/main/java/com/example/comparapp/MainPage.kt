@@ -17,16 +17,7 @@ import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.viewModel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainPage.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class MainPage : Fragment() {
 
@@ -57,6 +48,32 @@ class MainPage : Fragment() {
         binding.categoria7.setOnClickListener { addNavigation(binding.categoria7, "Azúcar y dulces") }
         binding.categoria8.setOnClickListener { addNavigation(binding.categoria8, "Procesados") }
         binding.categoria9.setOnClickListener { addNavigation(binding.categoria9, "Bebidas") }
+
+        binding.categoria10.setOnClickListener {
+            productViewModel.getProducts()
+            productViewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
+
+                when (resource) {
+                    is Resource.Success -> {
+                        products = resource.result.toObjects(Product::class.java)!!
+
+                        val bundle = Bundle()
+                        bundle.putSerializable("products", ArrayList(products))
+
+                        Navigation.createNavigateOnClickListener(
+                            R.id.action_mainPage_to_search2,
+                            bundle
+                        ).onClick(binding.categoria10)
+                    }
+
+                    is Resource.Failure -> {
+                        Log.e("Error", "Fallo al descargar los datos de firestore")
+                    }
+
+                    else -> {}
+                }
+            }
+        }
     }
 
     private fun addNavigation(view: View, category: String) {
@@ -83,35 +100,6 @@ class MainPage : Fragment() {
                 else -> {}
             }
         }
-
-        binding.categoria10.setOnClickListener {
-
-            productViewModel.getProducts()
-            productViewModel.productsFlow.observe(viewLifecycleOwner) { resource ->
-
-                when (resource) {
-                    is Resource.Success -> {
-                        products = resource.result.toObjects(Product::class.java)!!
-
-                        val bundle = Bundle()
-                        bundle.putSerializable("products", ArrayList(products))
-
-                        Navigation.createNavigateOnClickListener(
-                            R.id.action_mainPage_to_search2,
-                            bundle
-                        ).onClick(binding.categoria10)
-                    }
-
-                    is Resource.Failure -> {
-                        Log.e("Error", "Fallo al descargar los datos de firestore")
-                    }
-
-                    else -> {}
-                }
-            }
-
-        }
-
     }
 
 }
