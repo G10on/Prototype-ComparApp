@@ -192,7 +192,7 @@
 
         <!--USAR LA PLANTILLA DE SHOPPING_LIST_ITEM_TEMPLATE.XML-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/product"
+            android:id="@+id/product_shopping_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
