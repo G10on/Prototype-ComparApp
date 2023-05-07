@@ -99,7 +99,7 @@ class MainPage : Fragment() {
                         Navigation.createNavigateOnClickListener(
                             R.id.action_mainPage_to_search2,
                             bundle
-                        ).onClick(binding.categoria5)
+                        ).onClick(binding.categoria10)
                     }
 
                     is Resource.Failure -> {
