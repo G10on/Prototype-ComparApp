@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.comparapp.data.Product
 import com.example.comparapp.databinding.FragmentProductExtraInformationBinding
@@ -20,8 +21,13 @@ class ProductExtraInformationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductExtraInformationBinding.inflate(inflater)
+        binding.backButton.setOnClickListener { goBack() }
         updateProduct()
         return binding.root
+    }
+
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 
     private fun updateProduct() {
@@ -45,6 +51,6 @@ class ProductExtraInformationFragment : Fragment() {
     }
 
     private fun convertToString(number: Double): String {
-        return " " + number.toString() + "g"
+        return " $number g"
     }
 }

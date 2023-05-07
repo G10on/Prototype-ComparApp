@@ -1,13 +1,18 @@
 package com.example.comparapp.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comparapp.R
@@ -27,6 +32,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
 
         val productImage: ImageView = itemView.findViewById(R.id.product_image)
         val productName: TextView = itemView.findViewById(R.id.product_name)
+        val productFinalPrice: TextView = itemView.findViewById(R.id.product_final_price)
         val productPrice: TextView = itemView.findViewById(R.id.product_price)
         val productSupermarketLogo: ImageView = itemView.findViewById(R.id.supermarket)
         val product: View = itemView.findViewById(R.id.product)
@@ -50,9 +56,29 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
         return products.size
     }
 
+    @SuppressLint("ResourceAsColor", "ResourceType")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.productName.text = products[position].name
-        holder.productPrice.text = products[position].pricePerUnit.toString()
+
+        var price = products[position].pricePerUnit
+        var discount = products[position].discount
+
+        if (discount != .0) {
+            if (price != null) {
+                var containerLayout = holder.productFinalPrice.parent.parent as View
+                var addBtn = containerLayout.findViewById<Button>(R.id.add_to_SL_btn)
+                containerLayout.setBackgroundColor(ContextCompat.getColor(containerLayout.context, R.color.disccount))
+                addBtn.setBackgroundResource(R.drawable.product_plus_button_disccount)
+                holder.productPrice.text = price.toString() + "€/kg"
+                price -= discount!!
+                holder.productPrice.visibility = View.VISIBLE
+                holder.productPrice.paintFlags = holder.productFinalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                holder.productPrice.setTypeface(null, Typeface.ITALIC)
+                holder.productPrice.setTextColor(R.color.textInfo)
+            }
+        }
+
+        holder.productFinalPrice.text = price.toString() + "€/kg"
 
         Glide.with(holder.itemView.context).asBitmap().load(products[position].urlPhoto)
             .into(holder.productImage)
