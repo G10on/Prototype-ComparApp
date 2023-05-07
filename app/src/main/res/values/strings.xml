@@ -4,7 +4,7 @@
     <string name="inicia_sesion">Iniciar sesión</string>
     <string name="registrarse">Registrarse</string>
     <string name="ingredientes">Ingredientes</string>
-    <string name="valores_nutricionales">Valores nutricionales</string>
+    <string name="valores_nutricionales">Valores nutricionales (por 100g)</string>
     <string name="valor_energetico">Valor energético (kcal):</string>
     <string name="grasas">Grasas:</string>
     <string name="hidratos_de_carbono">Hidratos de carbono:</string>
