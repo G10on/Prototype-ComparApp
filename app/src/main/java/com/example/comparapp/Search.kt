@@ -77,8 +77,8 @@ class Search : Fragment() {
 
                 when (it) {
                     is Resource.Success -> {
-
-                        myAdapter = CardViewAdapter(productList, it.result.toBoolean())
+                        val isPremium = it.result.toBoolean()
+                        myAdapter = CardViewAdapter(testPremiumUser(productList, isPremium), isPremium)
                         binding.recycleProducts.adapter = myAdapter
                         if (productList.isEmpty()){
                             binding.textoNoProducto.visibility = View.VISIBLE
@@ -117,13 +117,9 @@ class Search : Fragment() {
             }
 
         }*/
-
-
-
-
-
-
     }
+
+
     private fun filter(text: String) {
         val filteredlist = java.util.ArrayList<Product>()
         for (item in productList) {
@@ -141,8 +137,13 @@ class Search : Fragment() {
         }
     }
 
-
-
-
+    private fun testPremiumUser(products: List<Product>, isPremium: Boolean): List<Product> {
+       if (isPremium) {
+           return products
+        }
+        val size = products.size
+        val halfSize = size / 2
+        return products.subList(halfSize, size).toMutableList()
+    }
 
 }
