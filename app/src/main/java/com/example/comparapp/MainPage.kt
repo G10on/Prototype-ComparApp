@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -16,6 +17,7 @@ import com.example.comparapp.databinding.FragmentMainPageBinding
 import com.example.comparapp.databinding.FragmentSearchBinding
 import com.example.comparapp.viewModel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 
 @AndroidEntryPoint
@@ -26,6 +28,16 @@ class MainPage : Fragment() {
     private val productViewModel: ProductViewModel by viewModels()
     private var products: List<Product> = ArrayList()
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this){
+            activity?.finishActivity(0)
+            exitProcess(0)
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
