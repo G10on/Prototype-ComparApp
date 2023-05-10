@@ -75,14 +75,16 @@
                     android:id="@+id/product_final_price"
                     style="@style/ProductTextItem"
                     android:layout_width="match_parent"
-                    android:text="31 €/ kg" />
+                    android:textColor="@color/black"
+                    android:text="" />
 
                 <TextView
                     android:id="@+id/product_price"
                     style="@style/ProductTextItem"
                     android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:text="34 €/ kg" />
+                    android:textColor="@color/black"
+                    android:text="" />
 
             </LinearLayout>
 

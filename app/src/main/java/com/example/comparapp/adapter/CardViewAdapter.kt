@@ -19,6 +19,8 @@ import com.example.comparapp.R
 import com.example.comparapp.data.Product
 import kotlin.collections.ArrayList
 import com.bumptech.glide.Glide
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlin.math.roundToInt
 
 
 @Suppress("UNCHECKED_CAST")
@@ -30,7 +32,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val productImage: ImageView = itemView.findViewById(R.id.product_image)
+        val productImage: CircleImageView = itemView.findViewById(R.id.product_image)
         val productName: TextView = itemView.findViewById(R.id.product_name)
         val productFinalPrice: TextView = itemView.findViewById(R.id.product_final_price)
         val productPrice: TextView = itemView.findViewById(R.id.product_price)
@@ -69,16 +71,17 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
                 var addBtn = containerLayout.findViewById<Button>(R.id.add_to_SL_btn)
                 containerLayout.setBackgroundColor(ContextCompat.getColor(containerLayout.context, R.color.disccount))
                 addBtn.setBackgroundResource(R.drawable.product_plus_button_disccount)
-                holder.productPrice.text = price.toString() + "€/u"
+                holder.productPrice.text = String.format("%.2f", price) + "€/u"
                 price -= discount!!
                 holder.productPrice.visibility = View.VISIBLE
                 holder.productPrice.paintFlags = holder.productFinalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 holder.productPrice.setTypeface(null, Typeface.ITALIC)
                 holder.productPrice.setTextColor(R.color.textInfo)
+                holder.productImage.setBorderColor(R.color.black)
             }
         }
 
-        holder.productFinalPrice.text = price.toString() + "€/u"
+        holder.productFinalPrice.text = String.format("%.2f", price) + "€/u"
 
         Glide.with(holder.itemView.context).asBitmap().load(products[position].urlPhoto)
             .into(holder.productImage)
