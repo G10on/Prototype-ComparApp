@@ -105,7 +105,7 @@ class CardViewAdapter(productList: List<Product>, isPremium: Boolean): RecyclerV
 
             }
             else {
-                Toast.makeText(holder.itemView.context, "Funcionalidad solo para usuarios PREMIUM :)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context, "Funcionalidad solo para usuarios premium", Toast.LENGTH_SHORT).show()
             }
         }
 
