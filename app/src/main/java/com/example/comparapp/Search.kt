@@ -2,6 +2,7 @@ package com.example.comparapp
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class Search : Fragment() {
 
     private val authViewModel: UserViewModel by viewModels()
     private var productList: List<Product> = ArrayList()
+    private lateinit var isPremium: String
     private lateinit var _binding: FragmentSearchBinding
     private lateinit var myAdapter: CardViewAdapter
     private lateinit var productRecyclerView: RecyclerView
@@ -77,8 +79,8 @@ class Search : Fragment() {
 
                 when (it) {
                     is Resource.Success -> {
-                        val isPremium = it.result.toBoolean()
-                        myAdapter = CardViewAdapter(testPremiumUser(productList, isPremium), isPremium)
+                        isPremium = it.result
+                        myAdapter = CardViewAdapter(testPremiumUser(productList, isPremium.toBoolean()), isPremium.toBoolean())
                         binding.recycleProducts.adapter = myAdapter
                         if (productList.isEmpty()){
                             binding.textoNoProducto.visibility = View.VISIBLE
@@ -122,12 +124,12 @@ class Search : Fragment() {
 
     private fun filter(text: String) {
         val filteredlist = java.util.ArrayList<Product>()
-        for (item in productList) {
+        for (item in testPremiumUser(productList, isPremium.toBoolean())) {
             if (item.name?.lowercase()?.contains(text.lowercase(Locale.getDefault())) == true) {
                 filteredlist.add(item)
             }
         }
-        myAdapter = CardViewAdapter(filteredlist, true)
+        myAdapter = CardViewAdapter(filteredlist, isPremium.toBoolean())
         productRecyclerView.adapter = myAdapter
         if (filteredlist.isEmpty()) {
             binding.textoNoProducto.visibility = View.VISIBLE
